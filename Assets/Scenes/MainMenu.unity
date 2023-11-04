@@ -291,6 +291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mutedSprite: {fileID: 21300000, guid: 9eaab13e38ca3ce4c998744f0358811f, type: 3}
   _unmutedSprite: {fileID: 21300000, guid: 8409eb49d0adce9419936916e063d346, type: 3}
+  _levelsButtonsTemplate: {fileID: 9197481963319205126, guid: 55a17b1ad56d54930a475f1b4b21cec3, type: 3}
 --- !u!1 &898519746
 GameObject:
   m_ObjectHideFlags: 0
