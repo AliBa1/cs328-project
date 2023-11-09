@@ -63,7 +63,7 @@ public class MainMenuController : MonoBehaviour
 
     private void Level1ButtonOnClicked()
     {
-        SceneManager.LoadScene("FirstLevel");
+        SceneManager.LoadScene("Brandon");
     }
 
     private void Level2ButtonOnClicked()
