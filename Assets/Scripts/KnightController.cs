@@ -1,4 +1,6 @@
+// Layers needed
 //Continue from here to connect with world: https://youtu.be/I6WSqFDLHiQ?si=KpO1Ypn2RCyLZwv-&t=1072
+//Layers for detection zone https://youtu.be/hl9q6IWiVqA?si=knTtfX9Oc3a1zjr5&t=619
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
