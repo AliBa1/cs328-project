@@ -22,11 +22,11 @@ public class inCameraDetector : MonoBehaviour
 
             if (isPlayerInXView && isPlayerBelowYView)
             {
-                Debug.Log("Player is in the camera's view");
+                //Debug.Log("Player is in the camera's view");
             }
             else
             {
-                Debug.Log("Player is not in the camera's view");
+                //Debug.Log("Player is not in the camera's view");
             }
         }
     }
