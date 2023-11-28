@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 2748664067010059595}
   - component: {fileID: 8756466182495669030}
   - component: {fileID: 3644954318201031725}
+  - component: {fileID: 5942567482209773252}
   m_Layer: 8
   m_Name: Knight
   m_TagString: Untagged
@@ -310,3 +311,16 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5942567482209773252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8644784904726596584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e76dc542cb904e7583d097d06b32569, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 100

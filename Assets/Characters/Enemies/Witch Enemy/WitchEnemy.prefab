@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1409110797808079729}
   - component: {fileID: 6194663638157691608}
   - component: {fileID: 6956531602216931510}
+  - component: {fileID: 115963773105889103}
   m_Layer: 8
   m_Name: WitchEnemy
   m_TagString: Untagged
@@ -221,6 +222,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &115963773105889103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832672992041379802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e76dc542cb904e7583d097d06b32569, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 100
 --- !u!1 &7835115167294235812
 GameObject:
   m_ObjectHideFlags: 0
