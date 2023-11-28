@@ -75,9 +75,9 @@ public class KnightController : MonoBehaviour
         }
         
         if(CanMove) {
-            rb.velocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.velocity.y);
+            //rb.velocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.velocity.y);
         } else {
-            rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y);
+            //rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y);
         }
         
         

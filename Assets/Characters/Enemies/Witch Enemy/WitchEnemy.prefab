@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 9149416816097532025}
   - component: {fileID: 1409110797808079729}
   - component: {fileID: 6194663638157691608}
-  m_Layer: 0
+  - component: {fileID: 6956531602216931510}
+  m_Layer: 8
   m_Name: WitchEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +168,7 @@ MonoBehaviour:
   walkStopRate: 0.6
   attackZone: {fileID: 2811586273733879328}
   charge: {fileID: 271217459848182842, guid: 0dba171ad4acb4f2aad451e07f91cded, type: 3}
-  startShotCooldown: 0
+  startShotCooldown: 3
   _hasTarget: 0
 --- !u!114 &6194663638157691608
 MonoBehaviour:
@@ -199,6 +200,27 @@ MonoBehaviour:
   wallDistance: 0.2
   ceilingDistance: 0.05
   _isGrounded: 0
+--- !u!95 &6956531602216931510
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832672992041379802}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 60255b431ab76416b8e0019a36701606, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7835115167294235812
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,7 +232,7 @@ GameObject:
   - component: {fileID: 4417809903145889552}
   - component: {fileID: 4214157030497378551}
   - component: {fileID: 2811586273733879328}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WitchDetectionZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,7 +286,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 9.1649, y: 0.13855684}
+  m_Offset: {x: 10.463631, y: 0.13855684}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -275,7 +297,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 21.223652, y: 3.273608}
+  m_Size: {x: 23.821114, y: 3.273608}
   m_EdgeRadius: 0
 --- !u!114 &2811586273733879328
 MonoBehaviour:

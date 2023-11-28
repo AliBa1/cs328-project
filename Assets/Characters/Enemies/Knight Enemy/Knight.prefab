@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6436401754561453679}
   - component: {fileID: 5446912673193701323}
   - component: {fileID: 9030463031571247988}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: DetectionZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,9 +105,8 @@ GameObject:
   - component: {fileID: 2739858555859808807}
   - component: {fileID: 2748664067010059595}
   - component: {fileID: 8756466182495669030}
-  - component: {fileID: 2152744974130716312}
   - component: {fileID: 3644954318201031725}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Knight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,36 +260,6 @@ MonoBehaviour:
   attackZone: {fileID: 9030463031571247988}
   _hasTarget: 0
 --- !u!114 &8756466182495669030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8644784904726596584}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 115708cdff9fc4a4dba6d7704a86a855, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  castFilter:
-    useTriggers: 0
-    useLayerMask: 0
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 0
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
-  groundDistance: 0.05
-  wallDistance: 0.2
-  ceilingDistance: 0.05
-  _isGrounded: 0
---- !u!114 &2152744974130716312
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

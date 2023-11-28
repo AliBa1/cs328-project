@@ -7,16 +7,23 @@ using UnityEngine;
 public class ChargeController : MonoBehaviour
 {
     public float speed;
+    //public Vector2 moveSpeed = new Vector2(3f, 0);
+    Rigidbody2D rb;
     // Start is called before the first frame update
+
+    private void Awake() {
+        //rb = GetComponent<Rigidbody2D>();
+    }
     void Start()
     {
-        
+        //rb.velocity = new Vector2(moveSpeed.x * transform.localScale.x, moveSpeed.y);
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector2.up * speed * Time.deltaTime);
+        //ERROR HERE
+        transform.Translate(Vector2.right * speed * Time.deltaTime);
     }
 
     private void OnCollisionEnter2D(Collision2D other) {

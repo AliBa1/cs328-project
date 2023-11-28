@@ -79,17 +79,25 @@ public class WitchController : MonoBehaviour
         }
         
         if(CanMove) {
-            rb.velocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.velocity.y);
+            //rb.velocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.velocity.y);
         } else {
-            rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y);
+            //rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y);
         }
-        
-        if(shotCooldown<=0) {
-            Instantiate(charge);
+
+        if(shotCooldown<=0 && _hasTarget) {
+            Instantiate(charge, transform.position, charge.transform.rotation);
+            // GameObject projectile = Instantiate(charge, transform.position, charge.transform.rotation);
+            // Vector3 origScale = projectile.transform.localScale;
+            // projectile.transform.localScale = new Vector3(
+            //     origScale.x * transform.localScale.x > 0 ? 1 : -1,
+            //     origScale.y,
+            //     origScale.z
+            // );
             shotCooldown = startShotCooldown;
         } else {
             shotCooldown -= Time.deltaTime;
         }
+    
     }
 
     private void FlipDirection() {
