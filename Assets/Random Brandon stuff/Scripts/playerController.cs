@@ -7,13 +7,15 @@ using UnityEngine.InputSystem;
 
 public class playerController : MonoBehaviour
 {
-    public float walkSpeed = 5f;
-    public float runSpeed = 8f;
-    public float jumpForce = 7f;
-    public float fallMulti = 2.5f;
-    public float climbSpeed = 5f;
+    public float walkSpeed;
+    public float runSpeed;
+    public float jumpForce;
+    public float fallMulti;
+    public float climbSpeed;
+    public float jumpGracePeriod;
     private bool isOnLadder = false;
-    bool grounded;
+    public bool canJump;
+    private bool grounded;
     Vector2 moveInput;
 
     public float currentMoveSpeed {  get
@@ -92,7 +94,14 @@ public class playerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-    }
+
+        walkSpeed = 5f;
+        runSpeed = 8f;
+        jumpForce = 10f;
+        fallMulti = 2.5f;
+        climbSpeed = 5f;
+        jumpGracePeriod = 0.1f;
+}
 
     // Start is called before the first frame update
     void Start()
@@ -151,9 +160,10 @@ public class playerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if(context.started && grounded)
+        if(context.started && grounded && canJump)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            canJump = false;
         }
     }
 
@@ -173,17 +183,25 @@ public class playerController : MonoBehaviour
         if (collision.gameObject.tag == "Platform")
         {
             grounded = true;
+            canJump = true;
             //Debug.Log("Grounded");
         }
     }
 
     void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Platform")
+        // Check if the player is not in the process of jumping
+        if (!IsJumping() && collision.gameObject.tag == "Platform")
         {
-            grounded = false;
-            //Debug.Log("UnGrounded");
+            // Delay setting grounded to false to allow for a grace period
+            StartCoroutine(DisableGrounded());
         }
+    }
+
+    bool IsJumping()
+    {
+        // Check if the player is moving upwards (jumping)
+        return rb.velocity.y > 0;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -206,5 +224,18 @@ public class playerController : MonoBehaviour
             isOnLadder = false;
             rb.gravityScale = 1f;
         }
+    }
+
+    IEnumerator DisableGrounded()
+    {
+        yield return new WaitForSeconds(jumpGracePeriod);
+        grounded = false;
+        // Debug.Log("UnGrounded");
+    }
+
+    IEnumerator DisableJumpForGracePeriod()
+    {
+        yield return new WaitForSeconds(jumpGracePeriod);
+        canJump = false;
     }
 }
