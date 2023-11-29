@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof (Damagable))]
 public class playerController : MonoBehaviour
 {
     public float walkSpeed;
@@ -17,24 +18,30 @@ public class playerController : MonoBehaviour
     public bool canJump;
     private bool grounded;
     Vector2 moveInput;
+    Damagable damagable;
 
     public float currentMoveSpeed {  get
         {
-            if (IsMoving)
-            {
-                if (IsRunning)
+            if (CanMove) {
+                if (IsMoving)
                 {
-                    return runSpeed;
+                    if (IsRunning)
+                    {
+                        return runSpeed;
+                    }
+                    else
+                    {
+                        return walkSpeed;
+                    }
                 }
                 else
                 {
-                    return walkSpeed;
+                    return 0;
                 }
-            }
-            else
-            {
+            } else {
                 return 0;
             }
+                
         }
     }
 
@@ -87,6 +94,24 @@ public class playerController : MonoBehaviour
 
     }
 
+    public bool IsAlive {
+        get {
+            return animator.GetBool(AnimationStrings.isAlive);
+        }
+    }
+
+    public bool CanMove {
+        get {
+            return animator.GetBool(AnimationStrings.canMove);
+        }
+
+        private set {
+
+        }
+    }
+
+    
+
     Rigidbody2D rb;
     Animator animator;
 
@@ -94,6 +119,7 @@ public class playerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        damagable = GetComponent<Damagable>();
 
         walkSpeed = 5f;
         runSpeed = 8f;
@@ -101,6 +127,7 @@ public class playerController : MonoBehaviour
         fallMulti = 2.5f;
         climbSpeed = 5f;
         jumpGracePeriod = 0.1f;
+
 }
 
     // Start is called before the first frame update
@@ -117,7 +144,13 @@ public class playerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(moveInput.x * currentMoveSpeed, rb.velocity.y);
+        // if (!damagable.LockVelocity) {
+        //     rb.velocity = new Vector2(moveInput.x * currentMoveSpeed, rb.velocity.y);
+        // }
+        
+        if (!damagable.IsHit) {
+            rb.velocity = new Vector2(moveInput.x * currentMoveSpeed, rb.velocity.y);
+        }
 
         if (rb.velocity.y < 0)
         {
@@ -129,9 +162,14 @@ public class playerController : MonoBehaviour
     {
         moveInput = context.ReadValue<Vector2>();
 
-        IsMoving = moveInput != Vector2.zero;
+        if  (IsAlive) {
+            IsMoving = moveInput != Vector2.zero;
 
-        SetFacingDirection(moveInput);
+            SetFacingDirection(moveInput);
+        } else {
+            IsMoving = false;
+        }
+        
     }
 
     private void SetFacingDirection(object moveSpeed)
@@ -160,7 +198,7 @@ public class playerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if(context.started && grounded && canJump)
+        if(context.started && grounded && canJump && CanMove)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             canJump = false;
@@ -237,5 +275,15 @@ public class playerController : MonoBehaviour
     {
         yield return new WaitForSeconds(jumpGracePeriod);
         canJump = false;
+    }
+
+    public void OnAttack(InputAction.CallbackContext context) {
+        if (context.started) {
+            animator.SetTrigger(AnimationStrings.attackTrigger);
+        }
+    }
+
+    public void OnHit(int damage, Vector2 knockback) {
+        rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
     }
 }

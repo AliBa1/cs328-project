@@ -5,11 +5,11 @@ using UnityEngine;
 public class cameraControl : MonoBehaviour
 {
     public float translation;
-    public float zoomOutSize = .25f;
+    public float zoomOutSize;
     // Start is called before the first frame update
     void Awake()
     {
-        zoomOutSize = 10f;
+        zoomOutSize = 12f;
         Camera.main.orthographicSize = zoomOutSize;
         translation = .003f;
     }
