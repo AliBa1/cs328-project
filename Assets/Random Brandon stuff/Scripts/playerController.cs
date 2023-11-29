@@ -22,21 +22,26 @@ public class playerController : MonoBehaviour
 
     public float currentMoveSpeed {  get
         {
-            if (IsMoving)
-            {
-                if (IsRunning)
+            if (CanMove) {
+                if (IsMoving)
                 {
-                    return runSpeed;
+                    if (IsRunning)
+                    {
+                        return runSpeed;
+                    }
+                    else
+                    {
+                        return walkSpeed;
+                    }
                 }
                 else
                 {
-                    return walkSpeed;
+                    return 0;
                 }
-            }
-            else
-            {
+            } else {
                 return 0;
             }
+                
         }
     }
 
@@ -95,6 +100,16 @@ public class playerController : MonoBehaviour
         }
     }
 
+    public bool CanMove {
+        get {
+            return animator.GetBool(AnimationStrings.canMove);
+        }
+
+        private set {
+
+        }
+    }
+
     
 
     Rigidbody2D rb;
@@ -129,10 +144,13 @@ public class playerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!damagable.LockVelocity) {
+        // if (!damagable.LockVelocity) {
+        //     rb.velocity = new Vector2(moveInput.x * currentMoveSpeed, rb.velocity.y);
+        // }
+        
+        if (!damagable.IsHit) {
             rb.velocity = new Vector2(moveInput.x * currentMoveSpeed, rb.velocity.y);
         }
-        
 
         if (rb.velocity.y < 0)
         {
@@ -180,7 +198,7 @@ public class playerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if(context.started && grounded && canJump)
+        if(context.started && grounded && canJump && CanMove)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             canJump = false;
@@ -257,6 +275,12 @@ public class playerController : MonoBehaviour
     {
         yield return new WaitForSeconds(jumpGracePeriod);
         canJump = false;
+    }
+
+    public void OnAttack(InputAction.CallbackContext context) {
+        if (context.started) {
+            animator.SetTrigger(AnimationStrings.attackTrigger);
+        }
     }
 
     public void OnHit(int damage, Vector2 knockback) {

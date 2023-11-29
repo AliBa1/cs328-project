@@ -7356,6 +7356,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 688329577}
     m_Modifications:
+    - target: {fileID: 115963773105889103, guid: b48e03f40f8864ccd8d89f610d2c3dd3, type: 3}
+      propertyPath: damagableHit.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 115963773105889103, guid: b48e03f40f8864ccd8d89f610d2c3dd3, type: 3}
+      propertyPath: damagableHit.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 832672992041379802, guid: b48e03f40f8864ccd8d89f610d2c3dd3, type: 3}
       propertyPath: m_Name
       value: WitchEnemy

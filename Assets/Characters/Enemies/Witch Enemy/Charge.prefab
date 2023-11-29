@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 9089017191268210790}
   - component: {fileID: 2774102548434361803}
   - component: {fileID: 2383706550775212706}
+  - component: {fileID: 8788488360333611505}
   - component: {fileID: 759773661417849489}
   - component: {fileID: 4875995865357224397}
-  - component: {fileID: 6582282386258328037}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Charge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,6 +109,33 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!50 &8788488360333611505
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 271217459848182842}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!58 &759773661417849489
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -138,7 +165,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -156,17 +183,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72b7ad02db66743ba9cec758fb14f811, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
---- !u!114 &6582282386258328037
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 271217459848182842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11f6d5999197840abbdd143bfd07a7ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackDamage: 10
+  damage: 15
+  speed: {x: 3, y: 0}
+  knockback: {x: 2, y: 0}

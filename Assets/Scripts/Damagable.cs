@@ -43,6 +43,14 @@ public class Damagable : MonoBehaviour
     [SerializeField]
     private bool isInvincible = false;
 
+    public bool IsHit {
+        get {
+            return animator.GetBool(AnimationStrings.isHit);
+        }
+        private set {
+            animator.SetBool(AnimationStrings.isHit, value);
+        }
+    }
     private float timeSinceHit;
     public float invinciblityTime = 0.25f;
 
@@ -88,9 +96,10 @@ public class Damagable : MonoBehaviour
         if (IsAlive && !isInvincible) {
             Health -= damage;
             isInvincible = true;
+            //IsHit = true;
 
             animator.SetTrigger(AnimationStrings.hitTrigger);
-            LockVelocity = true;
+            // LockVelocity = true;
             damagableHit?.Invoke(damage, knockback);
             return true;
         }
