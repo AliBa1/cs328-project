@@ -1,4 +1,3 @@
-// To connect to player: https://youtu.be/ouzkNDIXg3I?si=-rZ4F0kD2_dKmO1q&t=237
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
