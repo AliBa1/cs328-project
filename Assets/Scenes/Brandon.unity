@@ -9503,6 +9503,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4675720375845793988, guid: d57587193cb82fd49b7b118e5b4cf6cd, type: 3}
+      propertyPath: damagableHit.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4675720375845793988, guid: d57587193cb82fd49b7b118e5b4cf6cd, type: 3}
+      propertyPath: damagableHit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 5026970000550765869}
+    - target: {fileID: 4675720375845793988, guid: d57587193cb82fd49b7b118e5b4cf6cd, type: 3}
+      propertyPath: damagableHit.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4675720375845793988, guid: d57587193cb82fd49b7b118e5b4cf6cd, type: 3}
+      propertyPath: damagableHit.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnHit
+      objectReference: {fileID: 0}
+    - target: {fileID: 4675720375845793988, guid: d57587193cb82fd49b7b118e5b4cf6cd, type: 3}
+      propertyPath: damagableHit.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: playerController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4675720375845793988, guid: d57587193cb82fd49b7b118e5b4cf6cd, type: 3}
+      propertyPath: damagableHit.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4810605999918050465, guid: d57587193cb82fd49b7b118e5b4cf6cd, type: 3}
       propertyPath: m_Name
       value: Player
@@ -9512,6 +9536,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d57587193cb82fd49b7b118e5b4cf6cd, type: 3}
+--- !u!114 &5026970000550765869 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5860037257725615943, guid: d57587193cb82fd49b7b118e5b4cf6cd, type: 3}
+  m_PrefabInstance: {fileID: 5026970000550765868}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 889b92a5aab328f42bf5e3c147b9b91b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
