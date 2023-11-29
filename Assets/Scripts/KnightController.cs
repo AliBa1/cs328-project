@@ -1,6 +1,5 @@
-// Layers needed
-//Continue from here to connect with world: https://youtu.be/I6WSqFDLHiQ?si=KpO1Ypn2RCyLZwv-&t=1072
-//Layers for detection zone https://youtu.be/hl9q6IWiVqA?si=knTtfX9Oc3a1zjr5&t=619
+// Cliff Detection: https://youtu.be/-KPjYn881uM?si=st6Slnz7yTeaxncv&t=436
+// Player Animations & Witch Damage: https://youtu.be/_4UTWtC2Wnw?si=ManGQNyaBpC0Y_y3
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -56,6 +55,16 @@ public class KnightController : MonoBehaviour
         }
     }
 
+    public float AttackCooldown {
+        get {
+            return animator.GetFloat(AnimationStrings.attackCooldown);
+        }
+
+        private set {
+            animator.SetFloat(AnimationStrings.attackCooldown, Mathf.Max(value, 0));
+        }
+    }
+
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
         touchingDirections = GetComponent<TouchingDirections>();
@@ -69,6 +78,9 @@ public class KnightController : MonoBehaviour
     void Update()
     {
         HasTarget = attackZone.detectedColliders.Count > 0;
+        if (AttackCooldown>0) {
+            AttackCooldown -= Time.deltaTime;
+        }
     }
 
     private void FixedUpdate() {
