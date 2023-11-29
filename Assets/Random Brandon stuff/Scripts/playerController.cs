@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof (Damagable))]
 public class playerController : MonoBehaviour
@@ -19,6 +20,10 @@ public class playerController : MonoBehaviour
     private bool grounded;
     Vector2 moveInput;
     Damagable damagable;
+    [SerializeField]
+    private float delayBeforeLoading = 10f;
+
+    private float timeElapsed;
 
     public float currentMoveSpeed {  get
         {
@@ -155,6 +160,13 @@ public class playerController : MonoBehaviour
         if (rb.velocity.y < 0)
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMulti - 1) * Time.fixedDeltaTime;
+        }
+
+        if  (!IsAlive) {
+            timeElapsed += Time.deltaTime;
+            if (timeElapsed > delayBeforeLoading) {
+                SceneManager.LoadScene("MainMenu");
+            }
         }
     }
 
