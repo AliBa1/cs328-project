@@ -16,7 +16,7 @@ public class cameraControl : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {  
         transform.Translate(0, translation, 0);
     }
 }
