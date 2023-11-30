@@ -1,5 +1,3 @@
-// NEED PLAYER DEAD ANIMATION
-// Player hit animation
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
