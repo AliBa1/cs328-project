@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class inCameraDetector : MonoBehaviour
 {
@@ -26,7 +27,7 @@ public class inCameraDetector : MonoBehaviour
             }
             else
             {
-                //Debug.Log("Player is not in the camera's view");
+                SceneManager.LoadScene("MainMenu");
             }
         }
     }

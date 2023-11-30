@@ -4,35 +4,49 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof (Damagable))]
 public class playerController : MonoBehaviour
 {
-    public float walkSpeed = 5f;
-    public float runSpeed = 8f;
-    public float jumpForce = 7f;
-    public float fallMulti = 2.5f;
-    public float climbSpeed = 5f;
+    public float walkSpeed;
+    public float runSpeed;
+    public float jumpForce;
+    public float fallMulti;
+    public float climbSpeed;
+    public float jumpGracePeriod;
     private bool isOnLadder = false;
-    bool grounded;
+    public bool canJump;
+    private bool grounded;
     Vector2 moveInput;
+    Damagable damagable;
+    [SerializeField]
+    private float delayBeforeLoading = 10f;
+
+    private float timeElapsed;
 
     public float currentMoveSpeed {  get
         {
-            if (IsMoving)
-            {
-                if (IsRunning)
+            if (CanMove) {
+                if (IsMoving)
                 {
-                    return runSpeed;
+                    if (IsRunning)
+                    {
+                        return runSpeed;
+                    }
+                    else
+                    {
+                        return walkSpeed;
+                    }
                 }
                 else
                 {
-                    return walkSpeed;
+                    return 0;
                 }
-            }
-            else
-            {
+            } else {
                 return 0;
             }
+                
         }
     }
 
@@ -85,6 +99,24 @@ public class playerController : MonoBehaviour
 
     }
 
+    public bool IsAlive {
+        get {
+            return animator.GetBool(AnimationStrings.isAlive);
+        }
+    }
+
+    public bool CanMove {
+        get {
+            return animator.GetBool(AnimationStrings.canMove);
+        }
+
+        private set {
+
+        }
+    }
+
+    
+
     Rigidbody2D rb;
     Animator animator;
 
@@ -92,7 +124,16 @@ public class playerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-    }
+        damagable = GetComponent<Damagable>();
+
+        walkSpeed = 5f;
+        runSpeed = 8f;
+        jumpForce = 10f;
+        fallMulti = 2.5f;
+        climbSpeed = 5f;
+        jumpGracePeriod = 0.1f;
+
+}
 
     // Start is called before the first frame update
     void Start()
@@ -108,11 +149,24 @@ public class playerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(moveInput.x * currentMoveSpeed, rb.velocity.y);
+        // if (!damagable.LockVelocity) {
+        //     rb.velocity = new Vector2(moveInput.x * currentMoveSpeed, rb.velocity.y);
+        // }
+        
+        if (!damagable.IsHit) {
+            rb.velocity = new Vector2(moveInput.x * currentMoveSpeed, rb.velocity.y);
+        }
 
         if (rb.velocity.y < 0)
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMulti - 1) * Time.fixedDeltaTime;
+        }
+
+        if  (!IsAlive) {
+            timeElapsed += Time.deltaTime;
+            if (timeElapsed > delayBeforeLoading) {
+                SceneManager.LoadScene("MainMenu");
+            }
         }
     }
 
@@ -120,9 +174,14 @@ public class playerController : MonoBehaviour
     {
         moveInput = context.ReadValue<Vector2>();
 
-        IsMoving = moveInput != Vector2.zero;
+        if  (IsAlive) {
+            IsMoving = moveInput != Vector2.zero;
 
-        SetFacingDirection(moveInput);
+            SetFacingDirection(moveInput);
+        } else {
+            IsMoving = false;
+        }
+        
     }
 
     private void SetFacingDirection(object moveSpeed)
@@ -151,9 +210,10 @@ public class playerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if(context.started && grounded)
+        if(context.started && grounded && canJump && CanMove)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            canJump = false;
         }
     }
 
@@ -173,17 +233,25 @@ public class playerController : MonoBehaviour
         if (collision.gameObject.tag == "Platform")
         {
             grounded = true;
+            canJump = true;
             //Debug.Log("Grounded");
         }
     }
 
     void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Platform")
+        // Check if the player is not in the process of jumping
+        if (!IsJumping() && collision.gameObject.tag == "Platform")
         {
-            grounded = false;
-            //Debug.Log("UnGrounded");
+            // Delay setting grounded to false to allow for a grace period
+            StartCoroutine(DisableGrounded());
         }
+    }
+
+    bool IsJumping()
+    {
+        // Check if the player is moving upwards (jumping)
+        return rb.velocity.y > 0;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -206,5 +274,28 @@ public class playerController : MonoBehaviour
             isOnLadder = false;
             rb.gravityScale = 1f;
         }
+    }
+
+    IEnumerator DisableGrounded()
+    {
+        yield return new WaitForSeconds(jumpGracePeriod);
+        grounded = false;
+        // Debug.Log("UnGrounded");
+    }
+
+    IEnumerator DisableJumpForGracePeriod()
+    {
+        yield return new WaitForSeconds(jumpGracePeriod);
+        canJump = false;
+    }
+
+    public void OnAttack(InputAction.CallbackContext context) {
+        if (context.started) {
+            animator.SetTrigger(AnimationStrings.attackTrigger);
+        }
+    }
+
+    public void OnHit(int damage, Vector2 knockback) {
+        rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
     }
 }
