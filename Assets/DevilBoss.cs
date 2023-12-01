@@ -95,7 +95,7 @@ public class DevilBoss : MonoBehaviour
         }
         if((attackZone.detectedColliders.Count > 0) && (coolDown <= 0))
         {
-            coolDown = 1f;
+            coolDown = 2f;
             hasTarget = true;
             if (crit == 4)
             {
