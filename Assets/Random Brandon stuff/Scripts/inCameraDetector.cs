@@ -28,6 +28,7 @@ public class inCameraDetector : MonoBehaviour
             else
             {
                 SceneManager.LoadScene("MainMenu");
+                Cursor.visible = true;
             }
         }
     }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class keyCheck : MonoBehaviour
 {
@@ -33,7 +34,7 @@ public class keyCheck : MonoBehaviour
         {
             if (keyScript.HasKey())
             {
-                Debug.Log("Enter Boss Room");
+                SceneManager.LoadScene("BossScene");
             }
             else
             {

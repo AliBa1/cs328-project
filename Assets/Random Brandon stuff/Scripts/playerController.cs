@@ -25,6 +25,8 @@ public class playerController : MonoBehaviour
 
     private float timeElapsed;
 
+    public AudioSource swing;
+
     public float currentMoveSpeed {  get
         {
             if (CanMove) {
@@ -133,12 +135,14 @@ public class playerController : MonoBehaviour
         climbSpeed = 5f;
         jumpGracePeriod = 0.1f;
 
+        Cursor.visible = false;
+
 }
 
     // Start is called before the first frame update
     void Start()
     {
-
+        swing.volume = .4f;
     }
 
     // Update is called once per frame
@@ -166,6 +170,7 @@ public class playerController : MonoBehaviour
             timeElapsed += Time.deltaTime;
             if (timeElapsed > delayBeforeLoading) {
                 SceneManager.LoadScene("MainMenu");
+                Cursor.visible = true;
             }
         }
     }
@@ -292,6 +297,7 @@ public class playerController : MonoBehaviour
     public void OnAttack(InputAction.CallbackContext context) {
         if (context.started) {
             animator.SetTrigger(AnimationStrings.attackTrigger);
+            swing.Play();
         }
     }
 
