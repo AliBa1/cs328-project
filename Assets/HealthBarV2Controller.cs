@@ -1,28 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBarController : MonoBehaviour
+public class HealthBarV2Controller : MonoBehaviour
 {
-
     public Slider slider;
-    // public Gradient gradient;
-    public Image fill;
+    public TMP_Text healthBarText;
 
     Damagable playerDamagable;
-
-    // public void SetMaxHealth(int health) {
-    //     slider.maxValue = health;
-    //     slider.value = health;
-
-    //     fill.color = gradient.Evaluate(1f);
-    // }
-
-    // public void SetHealth(int health) {
-    //     slider.value = health;
-    //     fill.color = gradient.Evaluate(slider.normalizedValue);
-    // }
 
     private void Awake() {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -36,6 +23,7 @@ public class HealthBarController : MonoBehaviour
 
     private void Start() {
         slider.value = CalculateSliderPercentage(playerDamagable.Health, playerDamagable.MaxHealth);
+        healthBarText.text = "HP " + playerDamagable.Health + " / " + playerDamagable.MaxHealth;
     }
 
     private void OnEnable() {
@@ -46,12 +34,13 @@ public class HealthBarController : MonoBehaviour
         playerDamagable.healthChanged.RemoveListener(OnPlayerHealthChanged);
     }
 
-    private float CalculateSliderPercentage(int currentHealth, int maxHealth) {
+    private float CalculateSliderPercentage(float currentHealth, float maxHealth) {
         return currentHealth/maxHealth;
     }
 
     private void OnPlayerHealthChanged(int newHealth, int maxHealth) {
         slider.value = CalculateSliderPercentage(newHealth, maxHealth);
+        healthBarText.text = "HP " + newHealth + " / " + maxHealth;
     }
 
 }

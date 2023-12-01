@@ -19,9 +19,10 @@ public class playerController : MonoBehaviour
     public bool canJump;
     private bool grounded;
     Vector2 moveInput;
+    public HealthBarController healthBar;
     Damagable damagable;
     [SerializeField]
-    private float delayBeforeLoading = 10f;
+    private float delayBeforeLoading = 3f;
 
     private float timeElapsed;
 
@@ -142,7 +143,7 @@ public class playerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        swing.volume = .4f;
+    
     }
 
     // Update is called once per frame
