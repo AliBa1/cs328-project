@@ -38,6 +38,15 @@ public class DevilBoss : MonoBehaviour
         }
     }
 
+    public bool _hasCrit = false;
+
+    public bool hasCrit { get { return _hasCrit; } private set
+        {
+            _hasCrit = value;
+            animator.SetBool(AnimationStrings.hasCrit, value);
+        }
+    }
+
     public bool canMove
     {
         get
@@ -78,6 +87,8 @@ public class DevilBoss : MonoBehaviour
         transform.localScale = scale;
         animator.SetFloat("speed", Mathf.Abs(currentSpeed));
 
+        int crit = Random.Range(1, 5);
+
         if(coolDown > 0)
         {
             coolDown -= Time.deltaTime;
@@ -86,6 +97,14 @@ public class DevilBoss : MonoBehaviour
         {
             coolDown = 1f;
             hasTarget = true;
+            if (crit == 4)
+            {
+                hasCrit = true;
+            }
+            else
+            {
+                hasCrit = false;
+            }
         }
         else
         {
