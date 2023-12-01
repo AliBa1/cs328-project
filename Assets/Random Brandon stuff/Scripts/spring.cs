@@ -4,6 +4,13 @@ public class Spring : MonoBehaviour
 {
     public float launchForce = 10f; // Adjust this value to control the launch force
 
+    public AudioSource spring;
+
+    private void Start()
+    {
+        spring.volume = .2f;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -27,5 +34,6 @@ public class Spring : MonoBehaviour
         // Apply an upward force to launch the player;
         playerRb.velocity = new Vector2(playerRb.velocity.x, launchForce);
         Debug.Log("Player launched!");
+        spring.Play();
     }
 }

@@ -52,7 +52,7 @@ public class Damagable : MonoBehaviour
         }
     }
     private float timeSinceHit;
-    public float invinciblityTime = 0.25f;
+    public float invinciblityTime = 0.5f;
 
     public bool IsAlive {
         get {
