@@ -8,7 +8,7 @@ public class ChargeController : MonoBehaviour
     
     public int damage = 15;
     public Vector2 speed = new Vector2(7f, 0);
-    public Vector2 knockback = new Vector2(0, 0);
+    public Vector2 knockback = new Vector2(5, 2);
     Rigidbody2D rb;
     // Start is called before the first frame update
 
