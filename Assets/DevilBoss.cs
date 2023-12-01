@@ -6,9 +6,11 @@ public class DevilBoss : MonoBehaviour
 {
     public GameObject player;
     public Animator animator;
+    public DetectionZone attackZone;
 
     public float walkSpeed;
     private float currentSpeed;
+    private float coolDown;
 
     Rigidbody2D rigBod;
 
@@ -19,48 +21,80 @@ public class DevilBoss : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
-    }
 
+    }
     // Start is called before the first frame update
     void Start()
     {
 
     }
 
-    // Update is called once per frame
+    public bool _hasTarget = false;
+
+    public bool hasTarget { get { return _hasTarget; } private set
+        {
+            _hasTarget = value;
+            animator.SetBool(AnimationStrings.hasTarget, value);
+        }
+    }
+
+    public bool canMove
+    {
+        get
+        {
+            return animator.GetBool(AnimationStrings.canMove);
+        }
+    }
+
     void Update()
     {
         Vector3 scale = transform.localScale;
 
-        if(player.transform.position.x > transform.position.x)
+        if (player.transform.position.x > transform.position.x)
         {
             scale.x = Mathf.Abs(scale.x);
-            if (Mathf.Abs(player.transform.position.x - transform.position.x) < 2)
+            if (!canMove || Mathf.Abs(player.transform.position.x - transform.position.x) < 1.5)
             {
                 currentSpeed = 0;
-            }
-            else
-            {
+            }else{
                 currentSpeed = walkSpeed;
             }
+
             rigBod.velocity = new Vector2(currentSpeed * Vector2.right.x, rigBod.velocity.y);
         }
         else
         {
             scale.x = Mathf.Abs(scale.x) * -1;
-            if (Mathf.Abs(player.transform.position.x - transform.position.x) < 2)
+            if (!canMove || Mathf.Abs(player.transform.position.x - transform.position.x) < 1.5)
             {
                 currentSpeed = 0;
-            }
-            else
-            {
+            }else{
                 currentSpeed = walkSpeed;
             }
+
             rigBod.velocity = new Vector2(currentSpeed * Vector2.left.x, rigBod.velocity.y);
         }
 
         transform.localScale = scale;
         animator.SetFloat("speed", Mathf.Abs(currentSpeed));
+
+        if(coolDown > 0)
+        {
+            coolDown -= Time.deltaTime;
+        }
+        if((attackZone.detectedColliders.Count > 0) && (coolDown <= 0))
+        {
+            coolDown = 1f;
+            hasTarget = true;
+        }
+        else
+        {
+            hasTarget = false;
+        }
+    }
+
+    public void OnHit(int damage, Vector2 knockback)
+    {
+        rigBod.velocity = new Vector2(knockback.x, rigBod.velocity.y + knockback.y);
     }
 }
