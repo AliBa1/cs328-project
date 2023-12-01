@@ -7,14 +7,16 @@ public class ChargeController : MonoBehaviour
 {
     
     public int damage = 15;
-    public Vector2 speed = new Vector2(7f, 0);
+    public Vector2 speed = new Vector2(4f, 0);
     public Vector2 knockback = new Vector2(5, 2);
     Rigidbody2D rb;
-    // Start is called before the first frame update
+    // WitchController witch;
 
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
     }
+
+    // Start is called before the first frame update
     void Start()
     {
         rb.velocity = new Vector2(speed.x * transform.localScale.x, speed.y);
@@ -25,6 +27,9 @@ public class ChargeController : MonoBehaviour
     {
         //ERROR HERE
         transform.Translate(Vector2.right * speed * Time.deltaTime);
+        
+        // witchController = witch.GetComponent<WitchController>();
+        // transform.Translate(witchController.WalkDirection * speed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

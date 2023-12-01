@@ -8,6 +8,7 @@ TagManager:
   - Platform
   - Ladder
   - Key
+  - Boss
   layers:
   - Default
   - TransparentFX

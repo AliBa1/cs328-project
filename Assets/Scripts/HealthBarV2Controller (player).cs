@@ -23,7 +23,7 @@ public class HealthBarV2Controller : MonoBehaviour
 
     private void Start() {
         slider.value = CalculateSliderPercentage(playerDamagable.Health, playerDamagable.MaxHealth);
-        healthBarText.text = "HP " + playerDamagable.Health + " / " + playerDamagable.MaxHealth;
+        healthBarText.text = "You " + playerDamagable.Health + " / " + playerDamagable.MaxHealth;
     }
 
     private void OnEnable() {
@@ -40,7 +40,7 @@ public class HealthBarV2Controller : MonoBehaviour
 
     private void OnPlayerHealthChanged(int newHealth, int maxHealth) {
         slider.value = CalculateSliderPercentage(newHealth, maxHealth);
-        healthBarText.text = "HP " + newHealth + " / " + maxHealth;
+        healthBarText.text = "You " + newHealth + " / " + maxHealth;
     }
 
 }
