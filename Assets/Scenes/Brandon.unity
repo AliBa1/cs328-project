@@ -11269,6 +11269,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FloatTextManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5859790681188352865, guid: e2506f7ff2f004c8cafcd0aa90f097cf, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
