@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class DamageText : MonoBehaviour
 {
-    public Vector3 moveSpeed = new Vector3(0, -7, 0);
-    public float timeToFade = 3f;
+    public Vector3 moveSpeed = new Vector3(0, -3, 0);
+    public float timeToFade = 1f;
     RectTransform textTransform;
     TextMeshProUGUI textMeshPro;
 
     private float timeElapsed = 0f;
-    private Color startColor;
+    private Color startColor = new Color(255, 255, 255);
 
     private void Awake() {
         textTransform = GetComponent<RectTransform>();
