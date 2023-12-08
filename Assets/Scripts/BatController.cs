@@ -1,4 +1,4 @@
-// contine from: https://youtu.be/Kz7j-Gh1nZ0?si=Oni1XSsDAjoG4TwJ&t=1721
+// contine from: https://youtu.be/Kz7j-Gh1nZ0?si=Ul5e9QRy_jcZDi4F&t=2027
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -57,6 +57,9 @@ public class BatController : MonoBehaviour
             } else {
                 rb.velocity = Vector3.zero;
             }
+        } else {
+            // if dead will fall
+            rb.gravityScale = 2f;
         }
     }
 
@@ -69,6 +72,8 @@ public class BatController : MonoBehaviour
 
         rb.velocity = directionToWaypoint * flightSpeed;
 
+        UpdateDirection();
+
         // check if need to change waypoint
         if (distance <= waypointReachedDistance) {
             // to next waypoint
@@ -79,6 +84,21 @@ public class BatController : MonoBehaviour
             }
 
             nextWaypoint = waypoints[waypointNum];
+        }
+    }
+
+    private void UpdateDirection() {
+        Vector3 locScale = transform.localScale;
+        if (transform.localScale.x > 0) {
+            // facing right
+            if(rb.velocity.x < 0) {
+                // Flip
+                transform.localScale = new Vector3(-1 * locScale.x, locScale.y, locScale.z);
+            }
+        } else {
+            if (rb.velocity.x > 0) {
+                transform.localScale = new Vector3(-1 * locScale.x, locScale.y, locScale.z);
+            }
         }
     }
 }
