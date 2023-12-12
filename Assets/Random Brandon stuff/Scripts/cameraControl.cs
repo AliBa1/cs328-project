@@ -10,7 +10,7 @@ public class cameraControl : MonoBehaviour
     void Awake()
     {
         // zoomOutSize = 12f;
-        //Camera.main.orthographicSize = zoomOutSize;
+        Camera.main.orthographicSize = zoomOutSize;
         // translation = .03f;
     }
 
