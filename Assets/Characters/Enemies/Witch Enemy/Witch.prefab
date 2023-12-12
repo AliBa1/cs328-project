@@ -49,7 +49,7 @@ GameObject:
   - component: {fileID: 115963773105889103}
   - component: {fileID: 902939316974080615}
   m_Layer: 8
-  m_Name: WitchEnemy
+  m_Name: Witch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

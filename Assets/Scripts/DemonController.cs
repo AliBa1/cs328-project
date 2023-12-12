@@ -26,7 +26,7 @@ public class DemonController : MonoBehaviour
         set {
             if (_walkDirection != value){
                 //Flip
-                gameObject.transform.localScale = new Vector2(gameObject.transform.localScale.x * -1, gameObject.transform.localScale.y);
+                gameObject.transform.localScale = new Vector2(gameObject.transform.localScale.x * (-1), gameObject.transform.localScale.y);
 
                 if (value == WalkableDirection.Right) {
                     walkDirectionVector = Vector2.right;
