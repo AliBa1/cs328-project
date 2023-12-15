@@ -21,8 +21,8 @@ public class Damagable : MonoBehaviour
         }
     }
 
-    [SerializeField]
-    private int _health = 100;
+    
+    public int _health = 100;
 
     public int Health {
         get {
@@ -40,8 +40,7 @@ public class Damagable : MonoBehaviour
 
     [SerializeField]
     private bool _isAlive = true;
-    [SerializeField]
-    private bool isInvincible = false;
+    public bool isInvincible = false;
 
     public bool IsHit {
         get {

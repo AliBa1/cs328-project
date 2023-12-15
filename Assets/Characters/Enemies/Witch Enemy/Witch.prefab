@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 6956531602216931510}
   - component: {fileID: 115963773105889103}
   - component: {fileID: 902939316974080615}
+  - component: {fileID: 6599216222367543159}
   m_Layer: 8
   m_Name: Witch
   m_TagString: Untagged
@@ -281,6 +282,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  healthChanged:
+    m_PersistentCalls:
+      m_Calls: []
   _maxHealth: 50
   _health: 50
   _isAlive: 1
@@ -300,6 +304,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   launchPoint: {fileID: 9103300851441934161}
   charge: {fileID: 271217459848182842, guid: 0dba171ad4acb4f2aad451e07f91cded, type: 3}
+--- !u!114 &6599216222367543159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832672992041379802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3be8c06464b5eef49b4b62e11c97f14b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerupPrefab: {fileID: 4608503928544626596, guid: 8e81a800b92bc46489ffa55e4696c453, type: 3}
 --- !u!1 &7835115167294235812
 GameObject:
   m_ObjectHideFlags: 0
