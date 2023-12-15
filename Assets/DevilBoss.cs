@@ -26,6 +26,14 @@ public class DevilBoss : MonoBehaviour
         }
     }
 
+    public bool IsAlive
+    {
+        get
+        {
+            return animator.GetBool(AnimationStrings.isAlive);
+        }
+    }
+
     private void Awake()
     {
         rigBod = GetComponent<Rigidbody2D>();
@@ -122,6 +130,7 @@ public class DevilBoss : MonoBehaviour
         {
             hasTarget = false;
         }
+
         if (!IsAlive)
         {
             timeElapsed += Time.deltaTime;
