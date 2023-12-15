@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 7532049165306516723}
   - component: {fileID: 5860037257725615943}
   - component: {fileID: 4675720375845793988}
+  - component: {fileID: 6847709676076317}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -364,6 +365,9 @@ MonoBehaviour:
   climbSpeed: 5
   jumpGracePeriod: 0
   canJump: 0
+  healthBar: {fileID: 0}
+  delayBeforeLoading: 3
+  swing: {fileID: 0}
   _IsFacingRight: 1
 --- !u!114 &4675720375845793988
 MonoBehaviour:
@@ -392,11 +396,28 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  healthChanged:
+    m_PersistentCalls:
+      m_Calls: []
   _maxHealth: 100
   _health: 100
   _isAlive: 1
   isInvincible: 0
   invinciblityTime: 0.5
+--- !u!114 &6847709676076317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4810605999918050465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f6fd683894d5704bb4962def829b6a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ArrowPrefab: {fileID: 6875896133535261945, guid: ec60de9ba53ef6a429c6537fd833affd, type: 3}
+  animator: {fileID: 4835189191872165299}
 --- !u!1 &6433975330637801565
 GameObject:
   m_ObjectHideFlags: 0

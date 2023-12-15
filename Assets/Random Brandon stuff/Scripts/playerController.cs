@@ -9,6 +9,8 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof (Damagable))]
 public class playerController : MonoBehaviour
 {
+    public static float walkSpeedCheck;
+    public static float runSpeedCheck;
     public float walkSpeed;
     public float runSpeed;
     public float jumpForce;
@@ -129,8 +131,8 @@ public class playerController : MonoBehaviour
         animator = GetComponent<Animator>();
         damagable = GetComponent<Damagable>();
 
-        walkSpeed = 5f;
-        runSpeed = 8f;
+        walkSpeedCheck = 5f;
+        runSpeedCheck = 8f;
         jumpForce = 10f;
         fallMulti = 2.5f;
         climbSpeed = 5f;
@@ -143,13 +145,15 @@ public class playerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-    
+        walkSpeed = walkSpeedCheck;
+        runSpeed = runSpeedCheck;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        walkSpeedCheck = walkSpeed;
+        runSpeedCheck = runSpeed;
     }
 
     private void FixedUpdate()

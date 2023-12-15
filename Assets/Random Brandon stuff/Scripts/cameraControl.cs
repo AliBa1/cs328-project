@@ -11,7 +11,7 @@ public class cameraControl : MonoBehaviour
     {
         zoomOutSize = 12f;
         //Camera.main.orthographicSize = zoomOutSize;
-        translation = .03f;
+        translation = .003f;
     }
 
     // Update is called once per frame
