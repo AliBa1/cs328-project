@@ -428,6 +428,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3374841235054024731}
   - component: {fileID: 2568475545909518361}
+  - component: {fileID: 4215467749082257165}
   m_Layer: 10
   m_Name: SwordAttack
   m_TagString: Untagged
@@ -502,3 +503,17 @@ PolygonCollider2D:
       - {x: 0.38501114, y: -0.58354354}
       - {x: 0.55550814, y: -0.020606399}
   m_UseDelaunayMesh: 0
+--- !u!114 &4215467749082257165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6433975330637801565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11f6d5999197840abbdd143bfd07a7ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackDamage: 10
+  knockback: {x: 0, y: 0}
