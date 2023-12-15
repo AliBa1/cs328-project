@@ -1,12 +1,11 @@
-// Cliff Detection: https://youtu.be/-KPjYn881uM?si=st6Slnz7yTeaxncv&t=436
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damagable))]
-public class KnightController : MonoBehaviour
+public class DemonController : MonoBehaviour
 {
-    public float walkSpeed = 3f;
+    public float walkSpeed = 6f;
     public float walkStopRate = 0.6f;
     public DetectionZone attackZone;
 
@@ -89,9 +88,9 @@ public class KnightController : MonoBehaviour
         
         if(!damagable.LockVelocity) {
             if(CanMove) {
-                //rb.velocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.velocity.y);
+                // rb.velocity = new Vector2(walkSpeed * walkDirectionVector.x, rb.velocity.y);
             } else {
-                //rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y);
+                // rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y);
             }
         }
         
@@ -113,3 +112,4 @@ public class KnightController : MonoBehaviour
         rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
     }
 }
+
