@@ -34,7 +34,15 @@ public class keyCheck : MonoBehaviour
         {
             if (keyScript.HasKey())
             {
-                SceneManager.LoadScene("BossScene");
+               string currentScene = SceneManager.GetActiveScene().name;
+               if(currentScene == "Level2")
+                {
+                    SceneManager.LoadScene("BluciferScene");
+                }
+                else
+                {
+                    SceneManager.LoadScene("BossScene");
+                }
             }
             else
             {
