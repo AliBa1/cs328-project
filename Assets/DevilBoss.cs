@@ -18,6 +18,13 @@ public class DevilBoss : MonoBehaviour
     private float timeElapsed;
 
     Rigidbody2D rigBod;
+    public bool IsAlive
+    {
+        get
+        {
+            return animator.GetBool(AnimationStrings.isAlive);
+        }
+    }
 
     public bool IsAlive
     {

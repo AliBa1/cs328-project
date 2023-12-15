@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BossScene.unity
     guid: 2fc38b7c4247d474d94056ad0febd846
+  - enabled: 1
+    path: Assets/Scenes/Level2.unity
+    guid: 3357a46cd11007b4c9345b7493a6b903
+  - enabled: 1
+    path: Assets/Scenes/BluciferScene.unity
+    guid: 689c89c53b27f4653831c535e29c3caf
   m_configObjects: {}
