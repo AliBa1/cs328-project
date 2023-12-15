@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DevilBoss : MonoBehaviour
+public class Blucifer : MonoBehaviour
 {
     public GameObject player;
     public Animator animator;
     public DetectionZone attackZone;
+    public GameObject throwPoint;
 
     public float walkSpeed;
     private float currentSpeed;
@@ -31,7 +32,10 @@ public class DevilBoss : MonoBehaviour
 
     public bool _hasTarget = false;
 
-    public bool hasTarget { get { return _hasTarget; } private set
+    public bool hasTarget
+    {
+        get { return _hasTarget; }
+        private set
         {
             _hasTarget = value;
             animator.SetBool(AnimationStrings.hasTarget, value);
@@ -40,7 +44,10 @@ public class DevilBoss : MonoBehaviour
 
     public bool _hasCrit = false;
 
-    public bool hasCrit { get { return _hasCrit; } private set
+    public bool hasCrit
+    {
+        get { return _hasCrit; }
+        private set
         {
             _hasCrit = value;
             animator.SetBool(AnimationStrings.hasCrit, value);
@@ -58,14 +65,17 @@ public class DevilBoss : MonoBehaviour
     void Update()
     {
         Vector3 scale = transform.localScale;
-
+    
         if (player.transform.position.x > transform.position.x)
         {
             scale.x = Mathf.Abs(scale.x);
-            if (!canMove || Mathf.Abs(player.transform.position.x - transform.position.x) < 1.5)
+            throwPoint.transform.eulerAngles = new Vector3(0, 0, 0);
+            if (!canMove || Mathf.Abs(player.transform.position.x - transform.position.x) < 2.5)
             {
                 currentSpeed = 0;
-            }else{
+            }
+            else
+            {
                 currentSpeed = walkSpeed;
             }
 
@@ -74,10 +84,13 @@ public class DevilBoss : MonoBehaviour
         else
         {
             scale.x = Mathf.Abs(scale.x) * -1;
-            if (!canMove || Mathf.Abs(player.transform.position.x - transform.position.x) < 1.5)
+            throwPoint.transform.eulerAngles = new Vector3(0, 180, 0);
+            if (!canMove || Mathf.Abs(player.transform.position.x - transform.position.x) < 2.5)
             {
                 currentSpeed = 0;
-            }else{
+            }
+            else
+            {
                 currentSpeed = walkSpeed;
             }
 
@@ -89,11 +102,11 @@ public class DevilBoss : MonoBehaviour
 
         int crit = Random.Range(1, 5);
 
-        if(coolDown > 0)
+        if (coolDown > 0)
         {
             coolDown -= Time.deltaTime;
         }
-        if((attackZone.detectedColliders.Count > 0) && (coolDown <= 0))
+        if ((attackZone.detectedColliders.Count > 0) && (coolDown <= 0))
         {
             coolDown = 2f;
             hasTarget = true;
