@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DevilBoss : MonoBehaviour
 {
@@ -12,7 +13,19 @@ public class DevilBoss : MonoBehaviour
     private float currentSpeed;
     private float coolDown;
 
+    private float delayBeforeLoading = 3f;
+
+    private float timeElapsed;
+
     Rigidbody2D rigBod;
+
+    public bool IsAlive
+    {
+        get
+        {
+            return animator.GetBool(AnimationStrings.isAlive);
+        }
+    }
 
     private void Awake()
     {
@@ -109,6 +122,16 @@ public class DevilBoss : MonoBehaviour
         else
         {
             hasTarget = false;
+        }
+
+        if (!IsAlive)
+        {
+            timeElapsed += Time.deltaTime;
+            if (timeElapsed > delayBeforeLoading)
+            {
+                SceneManager.LoadScene("MainMenu");
+                Cursor.visible = true;
+            }
         }
     }
 
