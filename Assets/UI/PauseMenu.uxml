@@ -3,9 +3,9 @@
     <ui:VisualElement name="Menu" style="flex-grow: 1; flex-direction: row;">
         <ui:VisualElement name="MiddleScetion" style="width: 45%; height: 100%; background-color: rgba(0, 0, 0, 0.57); flex-shrink: 1; align-items: center; justify-content: flex-start; align-self: auto; flex-direction: column; flex-wrap: nowrap; flex-grow: 1; padding-top: 16px; padding-right: 16px; padding-bottom: 16px; padding-left: 16px;">
             <ui:VisualElement name="Buttons" style="justify-content: center; flex-grow: 1;">
-                <ui:Button text="Resume" parse-escape-sequences="false" display-tooltip-when-elided="true" name="ResumeButton" class="menu-button" />
-                <ui:Button text="Settings" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SettingsButton" class="menu-button" />
-                <ui:Button text="Quit" parse-escape-sequences="true" display-tooltip-when-elided="true" name="QuitButton" class="menu-button" />
+                <ui:Button text="Resume" parse-escape-sequences="false" display-tooltip-when-elided="true" name="ResumeButton" class="menu-button" style="flex-shrink: 1; flex-grow: 1; font-size: 40%;" />
+                <ui:Button text="Settings" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SettingsButton" class="menu-button" style="flex-grow: 1; flex-shrink: 1; font-size: 40%;" />
+                <ui:Button text="Quit" parse-escape-sequences="true" display-tooltip-when-elided="true" name="QuitButton" class="menu-button" style="flex-shrink: 1; flex-grow: 1; font-size: 40%;" />
             </ui:VisualElement>
             <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="MuteButton" class="menu-button" style="background-image: url(&apos;project://database/Assets/UI/volume%20symbol.png?fileID=2800000&amp;guid=8409eb49d0adce9419936916e063d346&amp;type=3#volume symbol&apos;); width: 20px; height: 20px;" />
         </ui:VisualElement>
